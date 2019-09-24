@@ -18,11 +18,9 @@ class Painting
   end
 
   def self.total_price
-    total = 0
-    self.all.each do |i|
-      total += i.price
-    end
-    total
+    self.all.map(&:price).reduce(&:+)
   end
-
+  
 end
+
+

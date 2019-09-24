@@ -45,12 +45,22 @@ class Artist
     self.all.map(&:years_experience).inject(&:+)
   end
 
+  # def self.most_prolific
+  #   current = self.all.first.paintings.size / self.all.first.years_experience
+  #   self.all.each do |i|
+  #     current = i.paintings.size / i.years_experience if i.paintings.size / i.years_experience > current
+  #   end
+  #   current
+  # end
+
   def self.most_prolific
-    self.all.max_by do |i|
-
+    self.all.max_by do |artist|
+      artist.paintings.length / artist.years_experience
     end
-
   end
 
+  def create_painting(title, price, gallery)
+    Painting.new(title, price, self, gallery)
+  end
 
 end
